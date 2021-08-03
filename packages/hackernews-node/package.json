@@ -4,14 +4,15 @@
   "private": true,
   "description": "Backend for Hackernews clone built using graphql-node",
   "scripts": {
-    "start": "node ./src/index.js"
+    "start": "nodemon ./src/index.js"
   },
   "dependencies": {
     "apollo-server": "^3.1.2",
     "graphql": "^15.5.1"
   },
   "devDependencies": {
-    "eslint": "^6.7.2"
+    "eslint": "^6.7.2",
+    "nodemon": "^2.0.12"
   },
   "eslintConfig": {
     "root": true,
