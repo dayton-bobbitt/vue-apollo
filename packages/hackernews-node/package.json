@@ -1,0 +1,25 @@
+{
+  "name": "hackernews-node",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Backend for Hackernews clone built using graphql-node",
+  "scripts": {
+    "start": "node ./src/index.js"
+  },
+  "dependencies": {
+    "apollo-server": "^3.1.2",
+    "graphql": "^15.5.1"
+  },
+  "devDependencies": {
+    "eslint": "^6.7.2"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "eslint:recommended"
+    ]
+  }
+}
