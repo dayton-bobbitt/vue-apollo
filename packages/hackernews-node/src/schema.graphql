@@ -4,13 +4,13 @@ type Query {
 }
 
 type Mutation {
-    createPost(url: String!, description: String!): Post!
-    updatePost(id: ID!, url: String, description: String): Post
+    createPost(url: String!, title: String!): Post!
+    updatePost(id: ID!, url: String, title: String): Post
     deletePost(id: ID!): Post
 }
 
 type Post {
     id: ID!
-    description: String!
+    title: String!
     url: String!
 }
