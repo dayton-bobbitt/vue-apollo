@@ -15,8 +15,8 @@ model Post {
   createdAt   DateTime  @default(now())
   url         String
   title       String
-  postedBy    User      @relation(fields: [postById], references: [id])
-  postById    Int
+  postedBy    User      @relation(fields: [postedById], references: [id])
+  postedById  Int
 }
 
 model User {
