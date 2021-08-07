@@ -1,24 +1,26 @@
 const { readFileSync } = require("fs");
 const { join } = require("path");
 const { ApolloServer } = require("apollo-server");
-const post = require("./post");
+const Query = require("./resolvers/Query");
+const Mutation = require("./resolvers/Mutation");
+const User = require("./resolvers/User");
+const Post = require("./resolvers/Post");
 
 const resolvers = {
-  Query: {
-    feed: () => post.getPosts(),
-    post: (_parent, args) => post.getPost(args.id),
-  },
-  Mutation: {
-    createPost: (_parent, args) => post.createPost(args.url, args.title),
-    updatePost: (_parent, args) =>
-      post.updatePost(args.id, args.url, args.title),
-    deletePost: (_parent, args) => post.deletePost(args.id),
-  },
+  Query,
+  Mutation,
+  User,
+  Post,
 };
 
 const server = new ApolloServer({
   typeDefs: readFileSync(join(__dirname, "schema.graphql"), "utf8"),
   resolvers,
+  context: ({ req }) => {
+    return {
+      req,
+    };
+  },
 });
 
 server.listen().then(({ url }) => console.log(`Server is running on ${url}`));
