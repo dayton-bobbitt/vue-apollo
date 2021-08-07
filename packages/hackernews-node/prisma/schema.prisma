@@ -15,4 +15,15 @@ model Post {
   createdAt   DateTime  @default(now())
   url         String
   title       String
+  postedBy    User      @relation(fields: [postById], references: [id])
+  postById    Int
+}
+
+model User {
+  id          Int       @id @default(autoincrement())
+  createdAt   DateTime  @default(now())
+  name        String    @unique
+  email       String    @unique
+  password    String
+  posts       Post[]
 }
