@@ -1,6 +1,7 @@
 const bcrypt = require("bcryptjs");
 const utils = require("../utils");
 const prisma = require("../prisma");
+const pubSub = require("../pub-sub");
 
 async function signup(parent, args, context, info) {
   const salt = await bcrypt.genSalt(Number(process.env.SALT_LENGTH));
@@ -41,10 +42,10 @@ async function login(parent, args, context, info) {
   };
 }
 
-function createPost(parent, args, context, info) {
+async function createPost(parent, args, context, info) {
   const userId = utils.getUserId(context.req);
 
-  return prisma.post.create({
+  const post = await prisma.post.create({
     data: {
       url: args.url,
       title: args.title,
@@ -55,6 +56,10 @@ function createPost(parent, args, context, info) {
       },
     },
   });
+
+  pubSub.publish("POST_CREATED", post);
+
+  return post;
 }
 
 module.exports = {

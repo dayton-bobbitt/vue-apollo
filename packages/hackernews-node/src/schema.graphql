@@ -8,6 +8,10 @@ type Mutation {
     createPost(url: String!, title: String!): Post!
 }
 
+type Subscription {
+    postCreated: Post
+}
+
 type Post {
     id: ID!
     title: String!
